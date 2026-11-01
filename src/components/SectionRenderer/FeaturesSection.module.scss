@@ -1,6 +1,10 @@
 .featuresSection {
   padding: 6rem 2rem;
-  background: var(--bg-surface);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 6;
 }
 
 .container {
