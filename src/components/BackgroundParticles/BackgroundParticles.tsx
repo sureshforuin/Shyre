@@ -18,6 +18,8 @@ type ShapeType =
 interface Particle {
   x: number;
   y: number;
+  baseVx: number;
+  baseVy: number;
   vx: number;
   vy: number;
   size: number;
@@ -30,7 +32,17 @@ interface Particle {
   pulseSpeed: number;
 }
 
-// Pre-create Path2D objects once so the GPU canvas renders them in microsecond batches
+interface WaveRipple {
+  x: number;
+  y: number;
+  radius: number;
+  maxRadius: number;
+  opacity: number;
+  speed: number;
+  color: string;
+}
+
+// Pre-compile Path2D objects once so the GPU canvas renders them in microsecond batches
 const createShapePaths = () => {
   // Heart Path
   const heart = new Path2D(
@@ -63,9 +75,7 @@ const createShapePaths = () => {
   diamond.closePath();
 
   // Cross Path
-  const cross = new Path2D(
-    'M10 2h4v8h8v4h-8v8h-4v-8H2v-4h8V2z'
-  );
+  const cross = new Path2D('M10 2h4v8h8v4h-8v8h-4v-8H2v-4h8V2z');
 
   // Floral Petal Path
   const petal = new Path2D(
@@ -122,7 +132,7 @@ export const BackgroundParticles: React.FC = () => {
 
     const shapes: ShapeType[] = [
       'heart',
-      'heart', // Weighted for Love theme
+      'heart',
       'star',
       'sparkle',
       'circle',
@@ -135,20 +145,24 @@ export const BackgroundParticles: React.FC = () => {
       'hexagon',
     ];
 
-    // High particle count (120 particles) with ZERO DOM overhead!
-    const PARTICLE_COUNT = 120;
+    const PARTICLE_COUNT = 130;
     const particles: Particle[] = [];
+    const ripples: WaveRipple[] = [];
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const baseVx = (Math.random() - 0.5) * 0.45;
+      const baseVy = -(Math.random() * 0.45 + 0.15);
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45, // Smooth horizontal drift
-        vy: -(Math.random() * 0.45 + 0.15), // Gentle ambient rise
+        baseVx,
+        baseVy,
+        vx: baseVx,
+        vy: baseVy,
         size: Math.random() * 14 + 8, // 8px to 22px
         shape: shapes[i % shapes.length],
         color: subtleColors[i % subtleColors.length],
-        baseOpacity: Math.random() * 0.35 + 0.35, // 0.35 to 0.70
+        baseOpacity: Math.random() * 0.35 + 0.35,
         rotation: Math.random() * Math.PI * 2,
         rotSpeed: (Math.random() - 0.5) * 0.015,
         pulsePhase: Math.random() * Math.PI * 2,
@@ -156,7 +170,59 @@ export const BackgroundParticles: React.FC = () => {
       });
     }
 
-    // Handle high DPI screens and window resizing efficiently
+    // Handle global mouse click to produce the wave ripple and particle displacement
+    const handleClick = (e: MouseEvent) => {
+      const clickX = e.clientX;
+      const clickY = e.clientY;
+
+      // 1. Spawn a glowing expanding wave ripple
+      ripples.push({
+        x: clickX,
+        y: clickY,
+        radius: 5,
+        maxRadius: Math.max(width, height) * 0.35, // Expands gracefully outwards
+        opacity: 0.65,
+        speed: 7.5,
+        color: 'rgba(197, 154, 90,', // Champagne gold luminous ring
+      });
+
+      // Also spawn a secondary subtle rose inner wave
+      ripples.push({
+        x: clickX,
+        y: clickY,
+        radius: 0,
+        maxRadius: Math.max(width, height) * 0.22,
+        opacity: 0.5,
+        speed: 5.5,
+        color: 'rgba(194, 51, 99,', // Brand rose inner ring
+      });
+
+      // 2. Displace particles in the blast zone with radial kinetic force
+      const blastRadius = 240; // Area of displacement
+      const maxForce = 9.5;    // Impulse velocity
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const p = particles[i];
+        const dx = p.x - clickX;
+        const dy = p.y - clickY;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < blastRadius && dist > 0) {
+          // Falloff: stronger push closer to the click point
+          const force = (1 - dist / blastRadius) * maxForce;
+          const angle = Math.atan2(dy, dx);
+          
+          p.vx += Math.cos(angle) * force;
+          p.vy += Math.sin(angle) * force;
+          // Spin faster on displacement
+          p.rotSpeed += (Math.random() - 0.5) * 0.15;
+        }
+      }
+    };
+
+    window.addEventListener('click', handleClick, { passive: true });
+
+    // Handle resize
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
@@ -164,14 +230,46 @@ export const BackgroundParticles: React.FC = () => {
 
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // 60FPS Canvas Animation Loop running completely outside the React render tree
+    // 60FPS Canvas Animation Loop
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
+      // --- Draw & Update Expanding Wave Ripples ---
+      for (let r = ripples.length - 1; r >= 0; r--) {
+        const rip = ripples[r];
+        rip.radius += rip.speed;
+        rip.opacity *= 0.965; // Smooth exponential fade-out
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(rip.x, rip.y, rip.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `${rip.color} ${Math.max(0, rip.opacity)})`;
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        // Delicate outer glow on ripple
+        ctx.beginPath();
+        ctx.arc(rip.x, rip.y, Math.max(1, rip.radius - 2), 0, Math.PI * 2);
+        ctx.strokeStyle = `${rip.color} ${Math.max(0, rip.opacity * 0.4)})`;
+        ctx.lineWidth = 6;
+        ctx.stroke();
+        ctx.restore();
+
+        // Remove expired waves
+        if (rip.opacity <= 0.01 || rip.radius >= rip.maxRadius) {
+          ripples.splice(r, 1);
+        }
+      }
+
+      // --- Draw & Update Particles ---
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         const p = particles[i];
 
-        // Update physics
+        // Apply friction to restore natural floating velocities smoothly
+        p.vx = p.vx * 0.94 + p.baseVx * 0.06;
+        p.vy = p.vy * 0.94 + p.baseVy * 0.06;
+
+        // Position update
         p.x += p.vx;
         p.y += p.vy;
         p.rotation += p.rotSpeed;
@@ -199,9 +297,9 @@ export const BackgroundParticles: React.FC = () => {
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rotation);
 
-        const scale = p.size / 24; // Normalized relative to 24x24 path box
+        const scale = p.size / 24;
         ctx.scale(scale, scale);
-        ctx.translate(-12, -12); // Center path origin
+        ctx.translate(-12, -12);
 
         ctx.fillStyle = `${p.color} ${Math.max(0.1, currentOpacity)})`;
         ctx.strokeStyle = `${p.color} ${Math.max(0.1, currentOpacity)})`;
@@ -257,6 +355,7 @@ export const BackgroundParticles: React.FC = () => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('click', handleClick);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
