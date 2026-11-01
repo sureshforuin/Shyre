@@ -1,0 +1,282 @@
+{
+  "site": {
+    "name": "ShyRe Creations",
+    "tagline": "Made with love",
+    "description": "Artisan resin preservation, bespoke floral keepsakes, and timeless handcrafted memorabilia made with love.",
+    "logo": "/images/logo.jpg",
+    "est": "Est. 2021",
+    "navigation": [
+      { "id": "home", "label": "Home", "path": "/" },
+      { "id": "about", "label": "About Us", "path": "/about" },
+      { "id": "work", "label": "Our Work", "path": "/work" },
+      { "id": "contact", "label": "Contact Us", "path": "/contact" }
+    ],
+    "socials": {
+      "instagram": "https://instagram.com",
+      "pinterest": "https://pinterest.com",
+      "email": "shyrecreations@gmail.com",
+      "whatsapp": "+91 98765 43210"
+    }
+  },
+  "pages": {
+    "home": {
+      "enabled": true,
+      "title": "Crafted with love, preserved forever.",
+      "subtitle": "Bespoke resin artworks, sentimental floral preservations, and multidimensional heirlooms.",
+      "sections": [
+        {
+          "type": "hero",
+          "heading": "Crafted with love, preserved forever.",
+          "tagline": "ShyRe Creations",
+          "description": "We encapsulate your most cherished memories into timeless crystal-clear resin keepsakes, bridal bouquet preservations, and bespoke heirloom artworks.",
+          "image": "/images/logo.jpg",
+          "primaryAction": {
+            "label": "Explore Our Work",
+            "path": "/work"
+          },
+          "secondaryAction": {
+            "label": "Commission a Piece",
+            "path": "/contact"
+          },
+          "stats": [
+            { "number": "1,200+", "label": "Bouquets Preserved" },
+            { "number": "100%", "label": "Handcrafted with Love" },
+            { "number": "4.9/5", "label": "Artisan Rating" }
+          ]
+        },
+        {
+          "type": "philosophy",
+          "eyebrow": "Artistic Philosophy",
+          "title": "Every fleeting blossom holds a lifetime of memory.",
+          "statement": "We believe love deserves permanence. From bridal petals to milestone celebrations, our archival casting technique transforms delicate nature into luminous resin sculpture.",
+          "values": [
+            {
+              "number": "01",
+              "title": "Archival Botanical Preservation",
+              "description": "Deep dehydrating and color retention processes that freeze fresh botanicals at peak vibrancy before casting."
+            },
+            {
+              "number": "02",
+              "title": "Optical Grade Resin Pouring",
+              "description": "Multi-layer vacuum-degassed pours engineered for absolute UV resistance, zero yellowing, and optical clarity."
+            },
+            {
+              "number": "03",
+              "title": "Gilded & Golden Accents",
+              "description": "Delicate 24k gold leafing, rose quartz inclusions, and personalized monogram calligraphy hand-finished to perfection."
+            }
+          ]
+        },
+        {
+          "type": "projectGrid",
+          "eyebrow": "Selected Portfolio",
+          "title": "Featured Preservations",
+          "subtitle": "Discover our signature bridal preservation blocks, luxury coasters, and luminous clocks.",
+          "limit": 4
+        }
+      ]
+    },
+    "about": {
+      "enabled": true,
+      "title": "About ShyRe Creations",
+      "subtitle": "The alchemy of preserving life's golden memories.",
+      "sections": [
+        {
+          "type": "text",
+          "eyebrow": "Our Heritage",
+          "title": "Where passion meets archival precision.",
+          "paragraphs": [
+            "ShyRe Creations was born out of an appreciation for memories that are too precious to fade. Founded with an intimate atelier spirit, we set out to elevate resin art from craft into fine heirloom artistry.",
+            "Each commission begins with understanding your story: a wedding bouquet carried down the aisle, a child's milestone token, or flowers from a heartfelt goodbye. We treat every petal with profound reverence, utilizing our proprietary dehydration and pigment stabilization formula.",
+            "Our studio combines timeless luxury aesthetics with contemporary minimalist craft. When you hold a ShyRe creation, you hold a moment suspended in glass-like clarity forever."
+          ],
+          "quote": "Love is immortal, and your memories deserve to be held in your hands, touched, and admired every single day.",
+          "quoteAuthor": "ShyRe Atelier Founders"
+        },
+        {
+          "type": "features",
+          "eyebrow": "The ShyRe Atelier Difference",
+          "title": "Why Connoisseurs Trust Our Craft",
+          "items": [
+            {
+              "title": "Zero-Bubble Vacuum Casting test",
+              "description": "Industrial grade degasification ensures pristine optical glass transparency without trapped air or distortion."
+            },
+            {
+              "title": "Custom Monograms & Gold Embellishments",
+              "description": "Hand-applied metallic foils, raised metallic lettering, and bespoke nameplate engravings."
+            },
+            {
+              "title": "Lifetime UV Stabilization",
+              "description": "Formulated with museum-grade UV inhibitors to prevent ambering or solar degradation over decades."
+            },
+            {
+              "title": "White-Glove Nationwide Logistics",
+              "description": "Temperature-controlled bouquet intake kits and insured delivery for delicate botanical treasures."
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "title": "Handcrafted with Love",
+          "caption": "Our hallmark medallion emblem, symbol of everlasting devotion and bespoke artistry.",
+          "imageUrl": "/images/logo.jpg",
+          "aspectRatio": "square",
+          "fullWidth": false
+        }
+      ]
+    },
+    "work": {
+      "enabled": true,
+      "title": "Our Curated Work",
+      "subtitle": "A gallery of bespoke floral preservations, bespoke keepsakes, and resin sculptures.",
+      "sections": [
+        {
+          "type": "projectGrid",
+          "eyebrow": "Studio Gallery",
+          "title": "Selected Commissions & Archival Pieces",
+          "subtitle": "Explore our portfolio of bridal bouquet blocks, tea light consoles, custom coasters, and wall clocks."
+        }
+      ]
+    },
+    "contact": {
+      "enabled": true,
+      "title": "Let's Create Something Eternal",
+      "subtitle": "Commission your custom keepsake or preserve your upcoming celebration flowers.",
+      "sections": [
+        {
+          "type": "contact",
+          "eyebrow": "Commission Atelier",
+          "title": "Reserve Your Preservation Date",
+          "subtitle": "We accept limited commissions each month to ensure meticulous devotion to every single piece.",
+          "email": "hello@shyrecreations.com",
+          "phone": "+91 98765 43210",
+          "studioLocation": "Bespoke Studio • Bangalore & Mumbai • Worldwide Shipping",
+          "availability": "Booking 2026 / 2027 Wedding Seasons",
+          "socialLinks": [
+            {
+              "platform": "Instagram",
+              "handle": "@shyre.creations",
+              "url": "https://instagram.com"
+            },
+            {
+              "platform": "Pinterest",
+              "handle": "ShyRe Creations",
+              "url": "https://pinterest.com"
+            },
+            {
+              "platform": "WhatsApp Atelier",
+              "handle": "Direct Concierge",
+              "url": "https://whatsapp.com"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "projects": [
+    {
+      "id": "project-01",
+      "enabled": true,
+      "title": "Seraphina Bridal Archival Hexagon",
+      "category": "Bridal Bouquet Preservation",
+      "year": "2026",
+      "thumbnail": "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=1200&q=80",
+      "description": "Archival dehydration and 6-layer optical resin casting of white ranunculus and blush garden roses.",
+      "longDescription": "Commissioned for an Italian destination wedding, this 10-inch geometric hexagon preserved fragile white ranunculus, eucalyptus leaves, and delicate blush peony petals. Layered with subtle 24k gold leaf veining.",
+      "link": "/work/project-01",
+      "featured": true,
+      "client": "Private Commission • Lake Como",
+      "materials": ["Optical Epoxy Resin", "Blush Ranunculus", "24K Gold Leaf Flakes", "Anti-UV Sealer"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      "id": "project-02",
+      "enabled": true,
+      "title": "Celestial Rose Gold Agate Coasters",
+      "category": "Home Heirlooms",
+      "year": "2026",
+      "thumbnail": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80",
+      "description": "Set of 6 organic geode resin coasters infused with real baby's breath, rose pigments, and gilded brass edges.",
+      "longDescription": "A celebration gift set inspired by fluid agate geode structures. Incorporating preserved baby's breath blossoms, natural rose quartz crystals, and hand-gilded borders.",
+      "link": "/work/project-02",
+      "featured": true,
+      "client": "The Oberoi Suite Amenities",
+      "materials": ["Resin Pigments", "Crushed Rose Quartz", "Gypsophila", "Liquid Gold Trim"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      "id": "project-03",
+      "enabled": true,
+      "title": "Aurelia Monogram Mantle Keepsake",
+      "category": "Memorial & Keepsakes",
+      "year": "2025",
+      "thumbnail": "https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=1200&q=80",
+      "description": "Deep archival arch featuring the client's wedding garland petals and hand-lettered gold calligraphy.",
+      "longDescription": "A towering 12-inch arched monument showcasing crimson red velvet roses, jasmine florets, and gold leaf confetti suspended in multi-level optical resin.",
+      "link": "/work/project-03",
+      "featured": true,
+      "client": "Private Collector",
+      "materials": ["High Viscosity Clear Resin", "Wedding Garland Florets", "Gold Foil Calligraphy"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      "id": "project-04",
+      "enabled": true,
+      "title": "Étoile Resin & Walnut Wall Clock",
+      "category": "Sculptural Objects",
+      "year": "2026",
+      "thumbnail": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80",
+      "description": "16-inch live-edge American walnut clock intertwined with shimmering pearl resin and dried wild foliage.",
+      "longDescription": "Functional sculpture uniting natural live-edge timber with bespoke rose-tinted pearl epoxy resin pours and silent German quartz movement.",
+      "link": "/work/project-04",
+      "featured": true,
+      "client": "Architectural Residence • Alibaug",
+      "materials": ["Live Edge Walnut", "Pearl Mica Powders", "Clear Deep-Cast Resin", "Brass Hardware"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      "id": "project-05",
+      "enabled": true,
+      "title": "Lumière Botanical Night Lamp",
+      "category": "Atmospheric Lighting",
+      "year": "2025",
+      "thumbnail": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=80",
+      "description": "Solid optical resin cylinder with encased wild dandelions on an integrated warm LED solid beechwood base.",
+      "longDescription": "Using delicate preservation chambers, complete wild dandelion seed heads are captured intact without a single floating seed disturbed.",
+      "link": "/work/project-05",
+      "featured": false,
+      "client": "Boutique Hotel Collection",
+      "materials": ["Pure Resin Cylinder", "Preserved Dandelion", "Beech Wood LED Base"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=80"
+      ]
+    },
+    {
+      "id": "project-06",
+      "enabled": true,
+      "title": "Verdant Flora Vanity Tray",
+      "category": "Home Heirlooms",
+      "year": "2026",
+      "thumbnail": "https://images.unsplash.com/photo-1582738411706-bfc8e691d1c2?auto=format&fit=crop&w=1200&q=80",
+      "description": "Heavy brass-handled serving tray embedded with pressed hydrangeas, gold speckles, and mirror base.",
+      "longDescription": "Designed for bedside jewelry curation or luxury fragrance display. Sealed with scratch-resistant, heat-resistant top coat.",
+      "link": "/work/project-06",
+      "featured": false,
+      "client": "Private Commission",
+      "materials": ["Pressed Hydrangeas", "Brushed Brass Handles", "High-Gloss Polyurethane Topcoat"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1582738411706-bfc8e691d1c2?auto=format&fit=crop&w=1200&q=80"
+      ]
+    }
+  ]
+}

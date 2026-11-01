@@ -1,0 +1,140 @@
+.footer {
+  background: #ffffff;
+  border-top: 1px solid var(--border-light);
+  padding: 5rem 2rem 3rem;
+  margin-top: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.brandBox {
+  max-width: 420px;
+}
+
+.brandTitleWrap {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.brandName {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.brandTagline {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-rose);
+  font-weight: 600;
+}
+
+.desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.navCols {
+  display: flex;
+  gap: 4rem;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.colTitle {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.colLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footerLink {
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--accent-rose);
+  }
+}
+
+.contactNote {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2.5rem;
+}
+
+.spatialNote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.heart {
+  color: var(--accent-rose);
+  font-size: 0.75rem;
+  margin: 0 0.2rem;
+}
+
+@media (max-width: 768px) {
+  .topRow {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .navCols {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .bottomRow {
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+}
