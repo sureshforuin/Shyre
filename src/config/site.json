@@ -8,7 +8,6 @@
     "navigation": [
       { "id": "home", "label": "Home", "path": "/" },
       { "id": "about", "label": "About Us", "path": "/about" },
-      { "id": "work", "label": "Our Work", "path": "/work" },
       { "id": "contact", "label": "Contact Us", "path": "/contact" }
     ],
     "socials": {
