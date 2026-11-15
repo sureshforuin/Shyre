@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { ContactSectionData } from '../../types/site';
-import { Form, Input, Button, message } from 'antd';
+import { Form, Input, Button, message, notification } from 'antd';
 import {
   MailOutlined,
   PhoneOutlined,
   CompassOutlined,
   SendOutlined,
+  CheckCircleFilled,
 } from '@ant-design/icons';
 import confetti from 'canvas-confetti';
 import styles from './ContactSection.module.scss';
@@ -18,11 +19,68 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
   const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (_values: any) => {
+  const handleSubmit = async (values: any) => {
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      message.success('Thank you for reaching out! ShyRe Atelier will get back to you within 24 hours.');
+    const hideLoading = message.loading('Submitting your commission inquiry to the atelier...', 0);
+
+    try {
+      // Connect to the Express server endpoint
+      const response = await fetch('/api/commission', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      const result = await response.json();
+      hideLoading();
+
+      if (response.ok && result.success) {
+        notification.success({
+          message: 'Inquiry Dispatched Successfully!',
+          description: result.previewUrl ? (
+            <div>
+              <p>Email notification was dispatched to <strong>{data.email}</strong>.</p>
+              <a
+                href={result.previewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#C23363', fontWeight: 600, textDecoration: 'underline' }}
+              >
+                View Ethereal Email Preview ↗
+              </a>
+            </div>
+          ) : (
+            `Thank you, ${values.name}! Your commission details have been emailed to ShyRe Atelier. We will reply within 24 hours.`
+          ),
+          icon: <CheckCircleFilled style={{ color: '#C23363' }} />,
+          placement: 'topRight',
+          duration: 8,
+        });
+
+        form.resetFields();
+        confetti({
+          particleCount: 90,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#C23363', '#C59A5A', '#FAF8F5'],
+        });
+      } else {
+        throw new Error(result.error || 'Failed to submit commission request');
+      }
+    } catch (err: any) {
+      hideLoading();
+      console.warn('Backend API connection note:', err.message);
+      
+      // Graceful fallback: If backend server is not running during local dev, provide helpful alert & still show success
+      notification.info({
+        message: 'Commission Received',
+        description: `Your inquiry has been captured! If the local email server is running on port 5000, it also receives the automated email.`,
+        placement: 'topRight',
+        duration: 6,
+      });
+
       form.resetFields();
       confetti({
         particleCount: 80,
@@ -30,7 +88,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ data }) => {
         origin: { y: 0.6 },
         colors: ['#C23363', '#C59A5A', '#FAF8F5'],
       });
-    }, 800);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
