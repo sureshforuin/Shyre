@@ -75,7 +75,7 @@ export default async (req: Request) => {
       }
 
       const transporter = await createTransporter();
-      const recipientEmail = getEnv('COMMISSION_RECEIVER_EMAIL') || 'hello@shyrecreations.com';
+      const recipientEmail = getEnv('COMMISSION_RECEIVER_EMAIL') || 'sureshforuin@gmail.com';
 
       const htmlContent = `
         <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 620px; margin: 0 auto; background: #FAF8F5; border: 1px solid #E8E8E5; border-radius: 12px; overflow: hidden; color: #171717;">

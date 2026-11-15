@@ -77,7 +77,7 @@ app.post('/api/commission', async (req: Request, res: Response): Promise<void> =
 
   try {
     const transporter = await createTransporter();
-    const recipientEmail = process.env.COMMISSION_RECEIVER_EMAIL || 'hello@shyrecreations.com';
+    const recipientEmail = process.env.COMMISSION_RECEIVER_EMAIL || 'sureshforuin@gmail.com';
 
     // HTML Email Template matching ShyRe Creations luxury aesthetic
     const htmlContent = `
