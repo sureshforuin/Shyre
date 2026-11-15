@@ -1,3 +1,5 @@
+"$schema" = "https://open-api.netlify.com/netlify.schema.json"
+
 [build]
   command = "npm run build"
   publish = "dist"
@@ -6,16 +8,8 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
-# Route API requests to the serverless function
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api"
-  status = 200
-  force = true
-
-# SPA fallback for React Router
+# SPA history fallback for React Router
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
